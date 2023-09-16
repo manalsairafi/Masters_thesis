@@ -1,0 +1,121 @@
+# This file was automatically created by FeynRules 2.3.49
+# Mathematica version: 10.3.0 for Linux x86 (64-bit) (October 9, 2015)
+# Date: Tue 11 Jul 2023 11:42:13
+
+
+# 
+# This is the logfile for the model MScM
+
+# Authors: M. Alsairafi
+# Model version: 1.0.0
+# Checking the Quantum numbers
+   * Electric charge defined.
+# Checking the Lagrangians
+   * All Lagrangians are ok.
+#
+# Particle definitions
+#
+
+   * No particles removed. All particles correspond to GenInt setup.
+
+# Automatically assigned PDG numbers
+   * Assigned PDG number 9000001 to particle ghA
+   * Assigned PDG number 9000002 to particle ghZ
+   * Assigned PDG number 9000003 to particle ghWp
+   * Assigned PDG number 9000004 to particle ghWm
+   * Assigned PDG number 9000005 to particle eta0R
+   * Assigned PDG number 9000006 to particle eta0I
+   * Assigned PDG number 9000007 to particle eta+
+   * Assigned PDG number 9000008 to particle N1
+   * Assigned PDG number 9000009 to particle N2
+   * Assigned PDG number 9000010 to particle N3
+
+
+# Compulsory PDG codes:
+   * Class SM leptons complete.
+   * Class SM neutrinos complete.
+   * Class SM quarks complete.
+   * Class SM gauge bosons complete.
+#
+# Parameter definitions
+#
+
+   * Parameter cz1 is complex, but declared as real. Changing type to complex.
+   * Parameter cz2 is complex, but declared as real. Changing type to complex.
+   * Parameter cz3 is complex, but declared as real. Changing type to complex.
+   * Parameter expdCPno is complex, but declared as real. Changing type to complex.
+   * Parameter sz1 is complex, but declared as real. Changing type to complex.
+   * Parameter sz2 is complex, but declared as real. Changing type to complex.
+   * Parameter sz3 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI1x1 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI1x2 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI1x3 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI2x1 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI2x2 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI2x3 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI3x1 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI3x2 is complex, but declared as real. Changing type to complex.
+   * Parameter RCI3x3 is complex, but declared as real. Changing type to complex.
+   * Parameter UPMNSno1x3 is complex, but declared as real. Changing type to complex.
+   * Parameter UPMNSno2x1 is complex, but declared as real. Changing type to complex.
+   * Parameter UPMNSno2x2 is complex, but declared as real. Changing type to complex.
+   * Parameter UPMNSno3x1 is complex, but declared as real. Changing type to complex.
+   * Parameter UPMNSno3x2 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc1 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc12 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc13 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc2 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc21 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc23 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc3 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc31 is complex, but declared as real. Changing type to complex.
+   * Parameter ySc32 is complex, but declared as real. Changing type to complex.
+
+
+# Vertices
+   * Calling FeynmanRules for 1 Lagrangians.
+   * Number of classes vertices: 192
+   * Number of flavored vertices: 192
+   * Saved vertices in InterfaceRun[ 1 ].
+   * Checked QNumber conservation.
+      - Quantum number GhostNumber conserved in all vertices.
+      - Quantum number Q conserved in all vertices.
+      - Quantum number Y conserved in all vertices.
+   * particles.py written.
+   * parameters.py written.
+#
+# Vertex definitions
+#
+
+   * 192 vertices written.
+   * vertices.py written.
+#
+# Lorentz structure definitions
+#
+
+   * 21 lorentz structures written.
+   * lorentz.py written.
+#
+# Coupling definitions
+#
+
+   * 124 couplings written.
+   * couplings.py written.
+#
+# Coupling order definitions
+#
+
+   * 0 couplings orders written.
+   * coupling_orders.py written.
+#
+# Decay definitions
+#
+
+   * 12 decays written.
+   * decay.py not written
+#
+# CTCoupling definitions
+#
+
+   * 0 CTcouplings written.
+   * CT_couplings.py written.
