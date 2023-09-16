@@ -3,8 +3,4 @@ This repository contains the files used for my Masters thesis project on simulat
 
 Abstract
 
-Attached are:
-* Files for writing the model on FeynRules
-* The Mathematica notebook used to generate outputs from the FeynRules, FeynArts and NLOCT packages
-* Edited MadDM scripts
-* Python script for MadDM output analysis
+Files:
