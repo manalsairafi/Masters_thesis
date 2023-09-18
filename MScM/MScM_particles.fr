@@ -10,7 +10,7 @@ M$MScMParticles = {
   S[20] == {
     ClassName       -> eta0R,
     SelfConjugate   -> True, 
-    Mass            -> {Meta0R, Internal},
+    Mass            -> {100, Internal},
     Width           -> {Weta0R, 1},
     PropagatorLabel -> "eta0R",
     PropagatorType  -> D,
@@ -78,7 +78,7 @@ F[20] == {
     Indices          -> {Index[ScotoGeneration]},
     FlavorIndex      -> ScotoGeneration,
     SelfConjugate    -> True,  
-    Mass             -> {MNn, {MN1, 1}, {MN2, Internal}, {MN3, Internal}},
+    Mass             -> {MNn, {MN1, Internal}, {MN2, Internal}, {MN3, Internal}},
     Width            -> {WNn, {WN1, 1}, {WN2, 1}, {WN3, 1}},
     PropagatorLabel  -> {"N", "N1", "N2", "N3"} ,
     PropagatorType   -> S,
