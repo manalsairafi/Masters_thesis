@@ -45,14 +45,14 @@ DM1 == {
 DMF == {
     ParameterType    -> External,
     Value            -> 1,
-    Description      -> "Mass difference meta0r - mn2"
+    Description      -> "Mass difference mn1 - mn2"
   },
 
 (* Masses *)
 
-Meta0R == {
+MN1 == {
     ParameterType    -> Internal,
-    Value            -> MN1 + DM1 ,
+    Value            -> Meta0R + DM1 ,
     Description      -> "mass of i component of inert doublet"
   },
 
@@ -192,75 +192,6 @@ UPMNSno == {
     Description      -> "PMNS mixing matrix"
   },
 
-(* IO *)(*
-th12io == {
-    ParameterType    -> External,
-    Value            -> 33.45,
-    Description      -> "Mixing angle 12"
-  },
-
-c12io == {
-    ParameterType    -> Internal,
-    Value            -> Cos[th12io Pi/180]
-  },
-
-s12io == {
-    ParameterType    -> Internal,
-    Value            -> Sin[th12io Pi/180]
-  },
-
-th23io == {
-    ParameterType    -> External,
-    Value            -> 49.3,
-    Description      -> "Mixing angle 23"
-  },
-
-c23io == {
-    ParameterType    -> Internal,
-    Value            -> Cos[th23io Pi/180]
-  },
-
-s23io == {
-    ParameterType    -> Internal,
-    Value            -> Sin[th23io Pi/180]
-  },
-
-th13io == {
-    ParameterType    -> External,
-    Value            -> 8.6,
-    Description      -> "Mixing angle 13"
-  },
-
-c13io == {
-    ParameterType    -> Internal,
-    Value            -> Cos[th13io Pi/180]
-  },
-
-s13io == {
-    ParameterType    -> Internal,
-    Value            -> Sin[th13io Pi/180]
-  },
-
-dCPio == {
-    ParameterType    -> External,
-    Value            -> 282,
-    Description      -> "CP phase"
-  },
-
-expdCPio == {
-    ParameterType    -> Internal,
-    Value            -> Exp[- I dCPio]
-  },
-
-UPMNSio == {
-    ParameterType    -> Internal,
-    Indices          -> {Index[Generation], Index[Generation]},
-    Value            -> {UPMNSio[1,1] -> c12io c13io				    , UPMNSio[1,2] -> s12io c13io			         , UPMNSio[1,3] -> s13io expdCPio,
-			 UPMNSio[2,1] -> - s12io c23io - c12io s23io s13io expdCPio , UPMNSio[2,2] -> c12io c23io - s12io s23io s13io expdCPio   , UPMNSio[2,3] -> s23io c13io,
-			 UPMNSio[3,1] -> s12io s23io - c12io c23io s13io expdCPio   , UPMNSio[3,2] -> - c12io s23io - s12io c23io s13io expdCPio , UPMNSio[3,3] -> c23io c13io    },
-    Description      -> "PMNS mixing matrix"
-  },
-*)
 (* Lambda matrix *)
 
 ScLambda1 == {
@@ -312,28 +243,6 @@ Mnuno == {
   },
 
 
-(* IO *)(*
-sqDm21io == {
-    ParameterType    -> External,
-    Value            -> 7.42*^-23,
-    Description      -> "Mixing angle 13"
-  },
-
-sqDm3lio == {
-    ParameterType    -> External,
-    Value            -> -2.498*^-21,
-    Description      -> "Mixing angle 13"
-  },
-
-Mnuio == {
-    ParameterType    -> Internal,
-    Indices          -> {Index[Generation], Index[Generation]},
-    Definitions      -> {Mnuio[i_?NumericQ, j_?NumericQ] :> 0  /; (i =!= j)},
-    Value            -> {Mnuio[1,1] -> Sqrt[Abs[sqDm3lio] - sqDm21io] , Mnuio[2,2] ->Sqrt[Abs[sqDm3lio]], Mnuio[3,3] -> 0},
-    ParameterName    -> {Mnuio[1,1] -> Mnu1io, Mnuio[2,2] -> Mnu2io, Mnuio[3,3] -> Mnu3io},
-    Description      -> "Diagonal mass matrix in inverted ordering"
-  },
-*)
 (* Casas-Ibarra matrix *)
 
 (* three complex angles *)
@@ -430,27 +339,6 @@ ySc == {
   }
 
 
-(* IO *)
-(*
-ySc == {
-    ParameterType    -> Internal,
-    Indices          -> {Index[Generation], Index[ScotoGeneration]},
-    InteractionOrder -> {QED, 1},
-    Value            -> {ySc[1,1] -> Sqrt[ScLambda[1,1]]  RCI[1,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,1]] + Sqrt[ScLambda[1,1]]  RCI[1,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,1]] + Sqrt[ScLambda[1,1]]  RCI[1,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,1]] , 
-			 ySc[1,2] -> Sqrt[ScLambda[1,1]]  RCI[1,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,2]] + Sqrt[ScLambda[1,1]]  RCI[1,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,2]] + Sqrt[ScLambda[1,1]]  RCI[1,3] Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,2]] , 
-			 ySc[1,3] -> Sqrt[ScLambda[1,1]]  RCI[1,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,3]] + Sqrt[ScLambda[1,1]]  RCI[1,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,3]] + Sqrt[ScLambda[1,1]]  RCI[1,3] Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,3]] ,
-			 ySc[2,1] -> Sqrt[ScLambda[2,2]]  RCI[2,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,1]] + Sqrt[ScLambda[2,2]]  RCI[2,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,1]] + Sqrt[ScLambda[2,2]]  RCI[2,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,1]], 
-			 ySc[2,2] -> Sqrt[ScLambda[2,2]]  RCI[2,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,2]] + Sqrt[ScLambda[2,2]]  RCI[2,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,2]] + Sqrt[ScLambda[2,2]]  RCI[2,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,2]], 
-			 ySc[2,3] -> Sqrt[ScLambda[2,2]]  RCI[2,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,3]] + Sqrt[ScLambda[2,2]]  RCI[2,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,3]] + Sqrt[ScLambda[2,2]]  RCI[2,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,3]],
-			 ySc[3,1] -> Sqrt[ScLambda[3,3]]  RCI[3,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,1]] + Sqrt[ScLambda[3,3]]  RCI[3,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,1]] + Sqrt[ScLambda[3,3]]  RCI[3,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,1]],
-			 ySc[3,2] -> Sqrt[ScLambda[3,3]]  RCI[3,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,2]] + Sqrt[ScLambda[3,3]]  RCI[3,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,2]] + Sqrt[ScLambda[3,3]]  RCI[3,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,2]], 
-			 ySc[3,3] -> Sqrt[ScLambda[3,3]]  RCI[3,1] Sqrt[Mnuio[1,1]] Conjugate[UPMNSio[1,3]] + Sqrt[ScLambda[3,3]]  RCI[3,2] Sqrt[Mnuio[2,2]] Conjugate[UPMNSio[2,3]] + Sqrt[ScLambda[3,3]]  RCI[3,3] 	Sqrt[Mnuio[3,3]] Conjugate[UPMNSio[3,3]]},
-    ParameterName    -> {ySc[1,1] -> ySc1, ySc[1,2] -> ySc12, ySc[1,3] -> ySc13,
-			 ySc[2,1] -> ySc21, ySc[2,2] -> ySc2, ySc[2,3] -> ySc23,
-			 ySc[3,1] -> ySc31, ySc[3,2] -> ySc32, ySc[3,3] -> ySc3},
-    Description      -> "Scotogenic Yukawa couplings"
-  }
-*)
 
 }
 
