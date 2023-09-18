@@ -14,7 +14,7 @@ M$Information = {
   Version      -> "1.0.0",
   Date         -> "",
   Institutions -> {"University of Tubingen"},
-  Emails       -> {manal.alsairafi@student.uni-tuebingen.de}
+  Emails       -> {}
 };
 
 FeynmanGauge = True;
