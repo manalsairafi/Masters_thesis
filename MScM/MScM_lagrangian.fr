@@ -1,0 +1,58 @@
+(**************************************)
+(*******    MScM LAGRANGIAN	*******)
+(**************************************)
+
+
+(**************************************)
+
+(* Free fields *)
+
+LScFree := Block[{mu},
+		ExpandIndices[ Nnbar.Ga[mu].del[Nn, mu] ]
+		];
+
+(**************************************)
+
+(* Yukawa interactions *)
+
+LScYuk := Block[{sp,ii,ff,ss,Scyuk},
+		Scyuk = ExpandIndices[ ySc[ff, ss] LLbar[sp, ii, ff].NnR[sp, ss] ETAflipbar[ii], FlavorExpand-> SU2D ];
+		Scyuk+HC[Scyuk]
+ ];
+
+(**************************************)
+
+(* Scalar potential *)
+
+(* scalar mass here *)
+LScInt := Block[{ii,mu},
+	  ExpandIndices[
+		(* Kinetic terms *)
+		DC[ETAbar[ii],mu] DC[ETA[ii],mu] 
+
+		(* Mass terms *)
+		- ScM^2 ETAbar[ii] ETA[ii] 
+
+		(* Quartic couplings *)
+		-(ScL2/2 ETAbar[ii] ETA[ii] ETAbar[jj] ETA[jj]
+		+ ScL3 Phibar[ii] Phi[ii] ETAbar[jj] ETA[jj] + ScL4 Phibar[ii] ETA[ii] ETAbar[jj] Phi[jj]
+		+ ScL5/2 ( Phibar[ii] ETA[ii] Phibar[jj] ETA[jj] + ETAbar[ii] Phi[ii] ETAbar[jj] Phi[jj] ) )
+	  , FlavorExpand->{SU2D,SU2W}]];
+
+LScIntRen := Block[{mu, ii},
+	     ExpandIndices[
+		(* Kinetic terms *)
+		 (ee*cw/(2*sw) + ee*sw/(2*cw)) (eta0R.del[eta0I, mu].Z[mu] + eta0I.del[eta0R, mu].Z[mu] + I etaPbar.del[etaP, mu].Z[mu] - I etaP.del[etaPbar, mu].Z[mu])
+		 + I*ee etaPbar.A[mu].del[etaP, mu] - I*ee etaP.A[mu].del[etaPbar, mu]
+
+		(* triple couplings *)
+		 -( ScL3*vev H etaP etaPbar + (ScL3+ScL4+ScL5)*vev/2 H eta0R eta0R + (ScL3+ScL4-ScL5)*vev/2 H eta0I eta0I)
+
+		(* lepton EW relevant terms *)
+		 (*+ e/2 A[mu].Ga[mu] lbar[ii] l[ii] + (ee*cw/(2*sw) + ee*sw/(2*cw)) vlbar[ii] vl[ii] Z[mu].Ga[mu] + (-ee*cw/(2*sw) + ee*sw/(2*cw) + ee*sw/cw) lbar[ii] l[ii] Z[mu].Ga[mu]*)
+		 , FlavorExpand->{SU2D,SU2W}]];
+(**************************************)
+
+LMScM := LScFree + LScYuk + LScInt;
+
+LMScMRen := LScIntRen + LScYuk;

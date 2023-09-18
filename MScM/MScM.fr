@@ -1,0 +1,98 @@
+(****************************************************************************************)
+
+(*		 FeynRules Model for the Minimal Scotogenic Model (MScM)		*)
+(*	    with additional right handed fermion triplet and a scalar doublet		*)
+(* 				Author: Manal Alsairafi					*)
+(* Standard Model part based on FeynRules mod file by N. Christensen, C. Duhr, B. Fuks  *)
+
+(****************************************************************************************)
+
+M$ModelName = "MScM";
+
+M$Information = {
+  Authors      -> {"M. Alsairafi"}, 
+  Version      -> "1.0.0",
+  Date         -> "",
+  Institutions -> {"University of Tubingen"},
+  Emails       -> {manal.alsairafi@student.uni-tuebingen.de}
+};
+
+FeynmanGauge = True;
+
+(**************************************)
+
+(*******      GAUGE GROUPS      *******)
+(*	   as in SM mod file          *)	 
+
+
+M$GaugeGroups = {
+  U1Y  == { 
+    Abelian          -> True,  
+    CouplingConstant -> g1, 
+    GaugeBoson       -> B, 
+    Charge           -> Y
+  },
+  SU2L == { 
+    Abelian           -> False, 
+    CouplingConstant  -> gw, 
+    GaugeBoson        -> Wi, 
+    StructureConstant -> Eps, 
+    Representations   -> {Ta,SU2D}, 
+    Definitions       -> {Ta[a_,b_,c_]->PauliSigma[a,b,c]/2, FSU2L[i_,j_,k_]:> I Eps[i,j,k]}
+  },
+  SU3C == { 
+    Abelian           -> False, 
+    CouplingConstant  -> gs, 
+    GaugeBoson        -> G,
+    StructureConstant -> f, 
+    Representations   -> {T,Colour}, 
+    SymmetricTensor   -> dSUN
+  } 
+};
+
+(*******	INDICES		*******)
+(*	   as in SM mod file          *)
+
+
+IndexRange[Index[SU2W      ]] = Unfold[Range[3]]; 
+IndexRange[Index[SU2D      ]] = Unfold[Range[2]];
+IndexRange[Index[Gluon     ]] = NoUnfold[Range[8]];
+IndexRange[Index[Colour    ]] = NoUnfold[Range[3]]; 
+IndexRange[Index[Generation]] = Range[3];
+IndexRange[Index[ScotoGeneration]] = Range[3];
+
+IndexStyle[SU2W,            j];
+IndexStyle[SU2D,            k];
+IndexStyle[Gluon,           a];
+IndexStyle[Colour,          m];
+IndexStyle[Generation,      f];
+IndexStyle[ScotoGeneration, s];
+
+(*******   INTERACTION ORDERS	*******)
+(*	   as in SM mod file          *)
+(*	     used for MG5	      *)
+
+M$InteractionOrderHierarchy = {
+  {QCD, 1},
+  {QED, 2}
+ (* {NP, 1} New Physics*)
+};
+
+
+(*******     LOADING FILES	*******)
+
+Get["SM_full.fr"];
+Get["MScM_particles.fr"];
+Get["MScM_parameters.fr"];
+Get["MScM_lagrangian.fr"];
+
+(**************************************)
+
+M$Parameters = Join[M$SMParameters, M$MScMParameters];
+
+M$ClassesDescription = Join[M$SMParticles, M$MScMParticles];
+
+LFull := LSM + LMScM;
+
+
+

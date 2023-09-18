@@ -1,0 +1,100 @@
+(**************************************)
+(*******    MScM PARTICLES	*******)
+(**************************************)
+
+
+M$MScMParticles = {
+
+(* Scotogenic scalars *)
+
+  S[20] == {
+    ClassName       -> eta0R,
+    SelfConjugate   -> True, 
+    Mass            -> {Meta0R, Internal},
+    Width           -> {Weta0R, 1},
+    PropagatorLabel -> "eta0R",
+    PropagatorType  -> D,
+    PropagatorArrow -> None,
+    ParticleName    -> "eta0R",
+    FullName        -> "eta0R"
+  },
+
+ S[21] == {
+    ClassName       -> eta0I,
+    SelfConjugate   -> True,
+    Mass            -> {Meta0I, Internal},
+    Width           -> {Weta0I, 1},
+    PropagatorLabel -> "eta0I",
+    PropagatorType  -> D,
+    PropagatorArrow -> None,
+    ParticleName    -> "eta0I",
+    FullName        -> "eta0I"
+  },
+
+  S[22] == {
+    ClassName        -> etaP,
+    SelfConjugate    -> False,  
+    Mass             -> {MetaP, Internal},
+    Width            -> {WetaP, 1},
+    QuantumNumbers   -> {Q -> 1},
+    PropagatorLabel  -> "etaP",
+    PropagatorType   -> D,
+    PropagatorArrow  -> None,
+    ParticleName     -> "eta+",
+    AntiParticleName -> "eta-",
+    FullName         -> "etaP"
+  },
+
+(* Eta: unphysical scalars  *)
+  S[200] == { 
+    ClassName      -> ETA, 
+    Unphysical     -> True, 
+    Indices        -> {Index[SU2D]},
+    FlavorIndex    -> SU2D,
+    QuantumNumbers -> {Y -> 1/2},
+    SelfConjugate  -> False,
+    Definitions    -> { ETA[1] -> I etaP, ETA[2] -> (eta0R + I eta0I)/Sqrt[2]  }
+  },
+
+(*flipping the doublet so the charged/neutral comps align with the charged/neutral leptons*)
+
+  S[201] == { 
+    ClassName      -> ETAflip, 
+    Unphysical     -> True, 
+    Indices        -> {Index[SU2D]},
+    FlavorIndex    -> SU2D,
+    QuantumNumbers -> {Y -> 1/2},
+    SelfConjugate  -> False,
+    Definitions    -> { ETAflip[1] -> (eta0R + I eta0I)/Sqrt[2] , ETAflip[2] ->  I etaP }
+  },
+
+(******************************)
+
+(* Scotogenic fermions *)
+
+F[20] == {
+    ClassName        -> Nn,
+    ClassMembers     -> {N1,N2,N3},
+    Indices          -> {Index[ScotoGeneration]},
+    FlavorIndex      -> ScotoGeneration,
+    SelfConjugate    -> True,  
+    Mass             -> {MNn, {MN1, 1}, {MN2, Internal}, {MN3, Internal}},
+    Width            -> {WNn, {WN1, 1}, {WN2, 1}, {WN3, 1}},
+    PropagatorLabel  -> {"N", "N1", "N2", "N3"} ,
+    PropagatorType   -> S,
+    PropagatorArrow  -> Forward,
+    ParticleName     -> {"N1","N2","N3"},
+    FullName         -> {"Scotino1", "Scotino2", "Scotino3"}
+},
+
+  F[21] == { 
+    ClassName      -> NnR, 
+    Unphysical     -> True, 
+    Indices        -> {Index[ScotoGeneration]},
+    FlavorIndex    -> ScotoGeneration,
+    SelfConjugate  -> True,
+    Definitions    -> { NnR[sp1_,ss_] :> Module[{sp2}, ProjP[sp1,sp2] Nn[sp2,ss]] }
+  }
+
+}
+(**************************************)
